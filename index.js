@@ -15,48 +15,40 @@ const refs = {
     }
 
 };
-// refs.timer.textContent = 'wait 1s please'
-// console.log(refs.only)
-//         refs.daysTimer.textContent = '-';
-//         refs.hoursTimer.textContent = '-';
-//         refs.minsTimer.textContent = '-';
-//         refs.secsTimer.textContent = '-';
 
 
 class Timer{
-    constructor() {
+    constructor(date) {
+        this.date = new Date(date)
 
+    }
+        start() {
+    
+        const dateFinalY =  this.date.getTime()
+        diferenceTimeMs(dateFinalY)
+
+        if (dateFinalY < Date.now()) {
+            return refs.timer.textContent = `Время вышло ! Приходи на следующий год =)`;
+
+        }
+
+        // console.log(dateFinalY)
+        setInterval(() => {
+     
+            diferenceTimeMs(dateFinalY);
+        }, 1000);
+   
     }
 }
 
 
-const timer = {
+const timer = new Timer('Nov 13, 2021');
 
-    start() {
-                   const dateF = new Date('Nov 13, 2021')
-        this.targetDate = Date.parse(dateF);
-
-        if (this.targetDate < Date.now()) {
-            return refs.timer.textContent = `Время вышло ! Приходи на следующий год =)`;
-
-        }
-          
-        const dateFinalY = dateF.getTime()
-   
-        
-        // console.log(dateFinalY)
-        setInterval(() => {
-            const currentTime = Date.now();
+function diferenceTimeMs(dateFinalY) {
+       const currentTime = Date.now();
             const differenceTime = dateFinalY - currentTime;
-            const time = getTimeComponents(differenceTime);
-       
-          return upodateClockface(time);
-
-
-
-        }, 1000);
-   
-    }
+    const time = getTimeComponents(differenceTime);
+      return upodateClockface(time);
 }
 
 
@@ -74,7 +66,7 @@ function upodateClockface({ days, hours, mins, secs }) {
 function repeta(value) {
     return String(value).padStart(2, '0');
 }
-repeta()
+
 
 function getTimeComponents(time){
 const days = repeta(Math.floor(time / (1000 * 60 * 60 * 24)));
