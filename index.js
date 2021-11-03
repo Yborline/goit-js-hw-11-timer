@@ -59,15 +59,3 @@ const timer = new Timer({
 });
 
 
-
-
-// function upodateClockface({ days, hours, mins, secs }) {
-
-//                refs.only.days.textContent = days;
-//             refs.only.hours.textContent = hours;
-//             refs.only.mins.textContent = mins;
-//             refs.only.secs.textContent = secs;
-// }
-
-
-
